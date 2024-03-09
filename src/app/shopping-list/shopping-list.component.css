@@ -1,0 +1,6 @@
+.list-group-item .btn-danger {
+    position: absolute;
+    top: 50%;
+    right: 10px; /* Adjust this value as needed */
+    transform: translateY(-50%);
+}
