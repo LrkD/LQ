@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "Lq_WT": {
+    "long-quiz-midterm": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -23,7 +23,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/lq-wt",
+            "outputPath": "dist/long-quiz-midterm",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -35,6 +35,7 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -67,10 +68,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "Lq_WT:build:production"
+              "buildTarget": "long-quiz-midterm:build:production"
             },
             "development": {
-              "buildTarget": "Lq_WT:build:development"
+              "buildTarget": "long-quiz-midterm:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -78,7 +79,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "Lq_WT:build"
+            "buildTarget": "long-quiz-midterm:build"
           }
         },
         "test": {
