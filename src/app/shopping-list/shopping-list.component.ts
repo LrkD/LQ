@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Ingredient } from '../shared/ingredient.model';
+import { Employee } from '../shared/ingredient.model';
 
 @Component({
   selector: 'app-shopping-list',
@@ -7,37 +7,61 @@ import { Ingredient } from '../shared/ingredient.model';
   styleUrls: ['./shopping-list.component.css']
 })
 export class ShoppingListComponent implements OnInit {
-  ingredients: Ingredient[] = [
-    new Ingredient('Apples', 5),
-    new Ingredient('Tomatoes', 10),
-  ];
+  employees: Employee[] = [];
 
-  newIngredientName: string = '';
-  newIngredientAmount: number = 0;
+  newEmployeeId: string = '';
+  newEmployeeNumber: string = '';
+  newFirstName: string = '';
+  newLastName: string = '';
+  newBirthday: Date; // Change the type to Date
+  newGender: string = '';
+  newPictureUrl: string = '';
 
   constructor() { }
 
   ngOnInit() {
+    // Initialize some sample employees
+    this.employees.push(
+      new Employee('1', 'EMP001', 'John', 'Doe', new Date('1990-01-01'), 'male', 'https://example.com/john.jpg'),
+      new Employee('2', 'EMP002', 'Jane', 'Doe', new Date('1992-05-15'), 'female', 'https://example.com/jane.jpg')
+    );
   }
 
-  addIngredient() {
-    if (this.newIngredientName && this.newIngredientAmount > 0) {
-      const newIngredient = new Ingredient(this.newIngredientName, this.newIngredientAmount);
-      this.ingredients.push(newIngredient);
+  addEmployee() {
+    if (this.newEmployeeId && this.newEmployeeNumber && this.newFirstName && this.newLastName && this.newBirthday && this.newGender && this.newPictureUrl) {
+      const newEmployee = new Employee(
+        this.newEmployeeId,
+        this.newEmployeeNumber,
+        this.newFirstName,
+        this.newLastName,
+        this.newBirthday, // Pass Date object
+        this.newGender,
+        this.newPictureUrl
+      );
+      this.employees.push(newEmployee);
 
-      // Clear input fields after adding the ingredient
-      this.newIngredientName = '';
-      this.newIngredientAmount = 0;
+      // Clear input fields after adding the employee
+      this.clearEmployeeFields();
     }
   }
 
-  deleteIngredient(index: number) {
-    if (index >= 0 && index < this.ingredients.length) {
-      this.ingredients.splice(index, 1);
+  deleteEmployee(index: number) {
+    if (index >= 0 && index < this.employees.length) {
+      this.employees.splice(index, 1);
     }
   }
 
-  clearShoppingList() {
-    this.ingredients = [];
+  clearEmployeeList() {
+    this.employees = [];
+  }
+
+  private clearEmployeeFields() {
+    this.newEmployeeId = '';
+    this.newEmployeeNumber = '';
+    this.newFirstName = '';
+    this.newLastName = '';
+    this.newBirthday = null; // Reset birthday to null or new Date() if you want to reset to today's date
+    this.newGender = '';
+    this.newPictureUrl = '';
   }
 }
